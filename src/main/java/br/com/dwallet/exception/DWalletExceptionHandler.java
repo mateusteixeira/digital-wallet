@@ -13,13 +13,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class DWalletExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(value = {UserNotFoundException.class, WalletAccountNotFoundException.class, CardNotFoundException.class })
+    @ExceptionHandler(value = {UserNotFoundException.class, WalletAccountNotFoundException.class})
     protected ResponseEntity<ErrorHandleDTO> handleNotFound(RuntimeException ex, WebRequest request) {
         return this.handleExceptionInternal(ex, ErrorHandleDTO.builder().message(String.format("Resource Not Found: %s", ex.getMessage())).build(),
                 new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(value = {UserAlreadyExistsException.class, WalletAccountAlreadyExistsException.class, CardAlreadyExistsException.class})
+    @ExceptionHandler(value = {UserAlreadyExistsException.class, WalletAccountAlreadyExistsException.class})
     protected ResponseEntity<ErrorHandleDTO> handleConflict(RuntimeException ex, WebRequest request) {
         return this.handleExceptionInternal(ex, ErrorHandleDTO.builder().message(String.format("Resource Already Exists: %s", ex.getMessage())).build(),
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
