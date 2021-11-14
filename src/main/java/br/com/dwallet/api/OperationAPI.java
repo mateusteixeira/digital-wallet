@@ -26,10 +26,12 @@ public class OperationAPI {
     public void withDraw(@RequestBody WithDrawDTO withDrawDTO, @PathVariable(name = "idUser") String idUser, @PathVariable(name = "idWalletAccount") String idWalletAccount) {
         operationService.doWithDraw(withDrawDTO, idUser, idWalletAccount);
     }
+
     @PutMapping("/deposit")
     public void deposit(@RequestBody DepositDTO depositDTO, @PathVariable(name = "idUser") String idUser, @PathVariable(name = "idWalletAccount") String idWalletAccount) {
         operationService.doDeposit(depositDTO, idUser, idWalletAccount);
     }
+
     @PutMapping("/billpayment")
     public void billPayment(@RequestBody BillPaymentDTO billPaymentDTO, @PathVariable(name = "idUser") String idUser, @PathVariable(name = "idWalletAccount") String idWalletAccount) {
         operationService.payBill(billPaymentDTO, idUser, idWalletAccount);

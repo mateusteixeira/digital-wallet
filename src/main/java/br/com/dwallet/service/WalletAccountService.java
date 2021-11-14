@@ -22,9 +22,9 @@ public class WalletAccountService {
     private final UserService userService;
 
     private final WalletAccountValidator walletAccountValidator;
-    
+
     private final WalletAccountRepository walletAccountRepository;
-    
+
     private final WalletAccountTranslator walletAccountTranslator;
 
     public WalletAccountService(UserService userService, WalletAccountValidator walletAccountValidator, WalletAccountRepository walletAccountRepository, WalletAccountTranslator walletAccountTranslator) {

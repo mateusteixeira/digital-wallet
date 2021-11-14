@@ -1,15 +1,13 @@
 package br.com.dwallet.service.operation;
 
 import br.com.dwallet.model.OperationType;
-import br.com.dwallet.model.WalletAccount;
-import br.com.dwallet.service.WalletAccountService;
 import br.com.dwallet.validator.operation.BillPaymentValidator;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 @Service
-public class BillPaymentService extends AbstractOutComingOperationService{
+public class BillPaymentService extends AbstractOutComingOperationService {
 
     private final BillPaymentValidator billPaymentValidator;
 

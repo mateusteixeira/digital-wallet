@@ -1,7 +1,10 @@
 package br.com.dwallet.service;
 
 import br.com.dwallet.model.OperationTimeLine;
-import br.com.dwallet.model.dto.*;
+import br.com.dwallet.model.dto.LifeTimeDTO;
+import br.com.dwallet.model.dto.OperationLifeTimeDTO;
+import br.com.dwallet.model.dto.WalletAccountDTO;
+import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
 import br.com.dwallet.service.operation.OperationTimeLineService;
 import br.com.dwallet.translator.LifeTimeTranslator;
 import org.springframework.data.domain.Pageable;

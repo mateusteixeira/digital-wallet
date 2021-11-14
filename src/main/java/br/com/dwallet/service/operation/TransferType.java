@@ -9,11 +9,11 @@ public enum TransferType {
     TED("tedSender"),
     DOC("docSender");
 
+    private final String strategyName;
+
     TransferType(String strategyName) {
         this.strategyName = strategyName;
     }
-
-    private final String strategyName;
 
     public static Optional<TransferType> getStrategyNameFor(String type) {
         return Arrays.stream(values())

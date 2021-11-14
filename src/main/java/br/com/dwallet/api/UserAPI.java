@@ -31,8 +31,8 @@ public class UserAPI {
 
     @GetMapping
     public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(defaultValue = "0") int page,
-                                  @RequestParam(defaultValue = "3") int pageSize,
-                                  @RequestParam(defaultValue = "id,desc") String[] sort) {
+                                                  @RequestParam(defaultValue = "3") int pageSize,
+                                                  @RequestParam(defaultValue = "id,desc") String[] sort) {
         Pageable paging = PageRequest.of(page, pageSize, Sort.by(sort));
         return ResponseEntity.ok(userService.getAllUsers(paging));
     }

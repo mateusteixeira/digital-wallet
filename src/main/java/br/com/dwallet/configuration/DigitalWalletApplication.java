@@ -17,29 +17,29 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @ComponentScan("br.com.dwallet")
 public class DigitalWalletApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DigitalWalletApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DigitalWalletApplication.class, args);
+    }
 
-	@Bean
-	public Queue tedQueue() {
-		return new Queue(Queues.TED_OPERATION_QUEUE, false);
-	}
+    @Bean
+    public Queue tedQueue() {
+        return new Queue(Queues.TED_OPERATION_QUEUE, false);
+    }
 
-	@Bean
-	public Queue docQueue() {
-		return new Queue(Queues.DOC_OPERATION_QUEUE, false);
-	}
+    @Bean
+    public Queue docQueue() {
+        return new Queue(Queues.DOC_OPERATION_QUEUE, false);
+    }
 
-	@Bean
-	public Queue billPaymentQueue() {
-		return new Queue(Queues.BILL_PAYMENT_OPERATION_QUEUE, false);
-	}
+    @Bean
+    public Queue billPaymentQueue() {
+        return new Queue(Queues.BILL_PAYMENT_OPERATION_QUEUE, false);
+    }
 
-	@Bean
-	public Queue pixQueue() {
-		return new Queue(Queues.PIX_OPERATION_QUEUE, false);
-	}
+    @Bean
+    public Queue pixQueue() {
+        return new Queue(Queues.PIX_OPERATION_QUEUE, false);
+    }
 
 
 }

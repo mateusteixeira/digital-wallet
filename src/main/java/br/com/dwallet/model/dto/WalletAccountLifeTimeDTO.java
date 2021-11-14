@@ -22,5 +22,5 @@ public class WalletAccountLifeTimeDTO implements Serializable {
     private int operationQuantity;
 
     @JsonProperty("operations")
-    private List<OperationLifeTimeDTO>  operationLifeTimeDTOS;
+    private List<OperationLifeTimeDTO> operationLifeTimeDTOS;
 }

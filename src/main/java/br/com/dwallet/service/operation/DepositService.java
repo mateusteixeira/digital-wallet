@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class DepositService extends AbstractIncomingOperationService{
+public class DepositService extends AbstractIncomingOperationService {
 
     private final DepositValidator depositValidator;
 
@@ -17,6 +17,6 @@ public class DepositService extends AbstractIncomingOperationService{
 
     public void doDeposit(BigDecimal amount, String idUser, String idWalletAccount) {
         depositValidator.validateDeposit(amount);
-       super.doProcess(idWalletAccount, idUser, amount, OperationType.DEPOSIT.name());
+        super.doProcess(idWalletAccount, idUser, amount, OperationType.DEPOSIT.name());
     }
 }
