@@ -2,9 +2,7 @@ package br.com.dwallet.api;
 
 import br.com.dwallet.model.dto.UserDTO;
 import br.com.dwallet.service.UserService;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -30,11 +28,8 @@ public class UserAPI {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(defaultValue = "0") int page,
-                                                  @RequestParam(defaultValue = "3") int pageSize,
-                                                  @RequestParam(defaultValue = "id,desc") String[] sort) {
-        Pageable paging = PageRequest.of(page, pageSize, Sort.by(sort));
-        return ResponseEntity.ok(userService.getAllUsers(paging));
+    public ResponseEntity<List<UserDTO>> getUsers(Pageable pageable) {
+        return ResponseEntity.ok(userService.getAllUsers(pageable));
     }
 
     @GetMapping("{id}")
@@ -43,18 +38,21 @@ public class UserAPI {
     }
 
     @PutMapping("{id}")
-    public void updateUser(@RequestBody UserDTO userDTO, @PathVariable(name = "id") String idUser) {
+    public ResponseEntity<Object> updateUser(@RequestBody UserDTO userDTO, @PathVariable(name = "id") String idUser) {
         userService.updateUser(userDTO, idUser);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
-    public void deleteUser(@PathVariable(name = "id") String idUser) {
+    public ResponseEntity<Object> deleteUser(@PathVariable(name = "id") String idUser) {
         userService.deleteUser(idUser);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
-    public void deleteAllUsers() {
+    public ResponseEntity<Object> deleteAllUsers() {
         userService.deleteAllUsers();
+        return ResponseEntity.ok().build();
     }
 
     private URI getUriToHeader(UserDTO userDTO) {

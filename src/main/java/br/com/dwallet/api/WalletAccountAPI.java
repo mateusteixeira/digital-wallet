@@ -2,9 +2,7 @@ package br.com.dwallet.api;
 
 import br.com.dwallet.model.dto.WalletAccountDTO;
 import br.com.dwallet.service.WalletAccountService;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,11 +29,8 @@ public class WalletAccountAPI {
     }
 
     @GetMapping
-    public ResponseEntity<List<WalletAccountDTO>> getWalletAccounts(@RequestParam(defaultValue = "0") int page,
-                                                                    @RequestParam(defaultValue = "3") int pageSize,
-                                                                    @RequestParam(defaultValue = "id,desc") String[] sort) {
-        Pageable paging = PageRequest.of(page, pageSize, Sort.by(sort));
-        return ResponseEntity.ok(walletAccountService.getAllWalletAccounts(paging));
+    public ResponseEntity<List<WalletAccountDTO>> getWalletAccounts(Pageable pageable) {
+        return ResponseEntity.ok(walletAccountService.getAllWalletAccounts(pageable));
     }
 
     @GetMapping("{id}")
@@ -44,18 +39,21 @@ public class WalletAccountAPI {
     }
 
     @PutMapping("{id}")
-    public void updateWalletAccount(@RequestBody WalletAccountDTO walletAccountDTO, @PathVariable(name = "id") String idWalletAccount) {
+    public ResponseEntity<Object> updateWalletAccount(@RequestBody WalletAccountDTO walletAccountDTO, @PathVariable(name = "id") String idWalletAccount) {
         walletAccountService.updateWalletAccount(walletAccountDTO, idWalletAccount);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("{id}")
-    public void deleteWalletAccount(@PathVariable(name = "id") String idWalletAccount) {
+    public ResponseEntity<Object> deleteWalletAccount(@PathVariable(name = "id") String idWalletAccount) {
         walletAccountService.deleteWalletAccount(idWalletAccount);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping
-    public void deleteAllWalletAccounts() {
+    public ResponseEntity<Object> deleteAllWalletAccounts() {
         walletAccountService.deleteAllWalletAccounts();
+        return ResponseEntity.ok().build();
     }
 
     private URI getUriToHeader(WalletAccountDTO walletAccountDTO) {
