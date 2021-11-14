@@ -16,9 +16,9 @@ public abstract class AbstractOutComingOperationService {
 
     protected void doProcess(BigDecimal amount, String idUser, String idWalletAccount, String type) {
         WalletAccount walletAccount = walletAccountService.getWalletAccountByIdAndIdUser(idWalletAccount, idUser);
-        walletAccountBalanceService.subtractAmountToWalletAccount(walletAccount, amount);
-        walletAccountService.saveWalletAccount(walletAccount);
-        operationTimeLineService.createOperationTimeLineForOutComing(walletAccount, amount, type);
+        WalletAccount walletAccountUpdated = walletAccountBalanceService.subtractAmountToWalletAccount(walletAccount, amount);
+        walletAccountService.saveWalletAccount(walletAccountUpdated);
+        operationTimeLineService.createOperationTimeLineForOutComing(walletAccountUpdated, amount, type);
     }
 
     @Autowired

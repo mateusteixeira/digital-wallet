@@ -61,8 +61,7 @@ public class UserService {
     }
 
     public void deleteUser(String idUser) {
-        User user = getUserOrThrowNotFoundException(idUser);
-        userRepository.delete(user);
+        userRepository.deleteById(idUser);
     }
 
     public void deleteAllUsers() {

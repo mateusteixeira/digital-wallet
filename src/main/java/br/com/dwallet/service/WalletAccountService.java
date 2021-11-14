@@ -64,8 +64,7 @@ public class WalletAccountService {
     }
 
     public void deleteWalletAccount(String idWalletAccount) {
-        WalletAccount walletAccount = getWalletAccountOrThrowNotFoundException(idWalletAccount);
-        walletAccountRepository.delete(walletAccount);
+        walletAccountRepository.deleteById(idWalletAccount);
     }
 
     public void deleteAllWalletAccounts() {
