@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -69,5 +70,29 @@ public class WalletAccountService {
 
     public void deleteAllWalletAccounts() {
         walletAccountRepository.deleteAll();
+    }
+
+    public WalletAccount getWalletAccountByIdAndIdUser(String idWalletAccount, String idUser) {
+        WalletAccount walletAccount = walletAccountRepository.findByIdAndUserId(idWalletAccount, idUser);
+        if (Objects.isNull(walletAccount)) {
+            throw new WalletAccountNotFoundException(String.format("WalletAccount for id %s and idUser %s not found.", idWalletAccount, idUser));
+        }
+        return walletAccount;
+    }
+
+    public void saveWalletAccount(WalletAccount walletAccount) {
+        walletAccountRepository.save(walletAccount);
+    }
+
+    public WalletAccount getWalletAccountByNumber(Long accountNumber) {
+        WalletAccount walletAccount = walletAccountRepository.findByAccountNumber(accountNumber);
+        if (Objects.isNull(walletAccount)) {
+            throw new WalletAccountNotFoundException(String.format("WalletAccount for number %s not found.", accountNumber));
+        }
+        return walletAccount;
+    }
+
+    public List<WalletAccount> getWalletAccountByIdUser(String idUser) {
+        return walletAccountRepository.findByUserId(idUser);
     }
 }

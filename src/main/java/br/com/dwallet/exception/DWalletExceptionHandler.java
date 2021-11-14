@@ -25,6 +25,18 @@ public class DWalletExceptionHandler extends ResponseEntityExceptionHandler {
                 new HttpHeaders(), HttpStatus.CONFLICT, request);
     }
 
+    @ExceptionHandler(value = {AmountBusinessException.class, WrongTransferTypeException.class})
+    protected ResponseEntity<ErrorHandleDTO> handleBusinessError(RuntimeException ex, WebRequest request) {
+        return this.handleExceptionInternal(ex, ErrorHandleDTO.builder().message(String.format("Error in operation: %s", ex.getMessage())).build(),
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = {RuntimeException.class})
+    protected ResponseEntity<ErrorHandleDTO> handleErrors(RuntimeException ex, WebRequest request) {
+        return this.handleExceptionInternal(ex, ErrorHandleDTO.builder().message(String.format("Error in application: %s", ex.getMessage())).build(),
+                new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
     protected ResponseEntity<ErrorHandleDTO> handleExceptionInternal(Exception ex, @Nullable ErrorHandleDTO body, HttpHeaders headers, HttpStatus status, WebRequest request) {
         if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
             request.setAttribute("javax.servlet.error.exception", ex, 0);
