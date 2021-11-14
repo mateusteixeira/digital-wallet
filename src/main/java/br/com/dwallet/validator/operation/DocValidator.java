@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 public class DocValidator extends AbstractValidator implements Validator {
 
     public void validate(AsyncOperationMessage asyncOperationMessage) {
-        validateUsersNotSame(asyncOperationMessage.getIdUserTo(), asyncOperationMessage.getIdUserFrom());
-        validateWalletAccountNotSame(asyncOperationMessage.getIdWalletAccountFrom(), asyncOperationMessage.getAccountNumberTo());
+        validateUsersNotDifferent(asyncOperationMessage.getIdUserTo(), asyncOperationMessage.getIdUserFrom());
+        validateWalletAccountNotDifferent(asyncOperationMessage.getIdWalletAccountFrom(), asyncOperationMessage.getAccountNumberTo());
         validateAmountBiggerThanZero(asyncOperationMessage.getAmount());
     }
 

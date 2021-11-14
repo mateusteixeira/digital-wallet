@@ -18,14 +18,14 @@ public abstract class AbstractValidator {
         }
     }
 
-    protected void validateWalletAccountNotSame(String idWalletAccountFrom, Long accountNumberTo) {
+    protected void validateWalletAccountNotDifferent(String idWalletAccountFrom, Long accountNumberTo) {
         WalletAccount walletAccount = walletAccountService.getWalletAccountByNumber(accountNumberTo);
         if (walletAccount.getId().equals(idWalletAccountFrom)) {
             throw new TransferBusinessException("It is not possible transfer to same account");
         }
     }
 
-    protected void validateUsersNotSame(String idUserTo, String idUserFrom) {
+    protected void validateUsersNotDifferent(String idUserTo, String idUserFrom) {
         if (idUserTo.equals(idUserFrom)) {
             throw new TransferBusinessException("It is not possible transfer to same user");
         }
