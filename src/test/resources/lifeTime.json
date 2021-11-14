@@ -1,0 +1,12 @@
+{
+  "operationQuantity": 1,
+  "operations": [
+    {
+      "accountName": "q1w2e3",
+      "incoming": true,
+      "operationAt": "2021-11-13T00:25:46.000",
+      "value": 12.45,
+      "type": "PIX"
+    }
+  ]
+}
