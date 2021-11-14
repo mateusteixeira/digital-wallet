@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class ErrorHandleDTOTest {
 
     private static final String PATH_TO_FILE = "/errorHandle.json";
-    private static final String MESSAGE = "An unexpected error occurs\"";
+    private static final String MESSAGE = "An unexpected error occurs";
 
     @Test
     public void should_read_from_json_and_assert_values() throws IOException {

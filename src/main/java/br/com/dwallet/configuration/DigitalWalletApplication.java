@@ -32,11 +32,6 @@ public class DigitalWalletApplication {
     }
 
     @Bean
-    public Queue billPaymentQueue() {
-        return new Queue(Queues.BILL_PAYMENT_OPERATION_QUEUE, false);
-    }
-
-    @Bean
     public Queue pixQueue() {
         return new Queue(Queues.PIX_OPERATION_QUEUE, false);
     }
