@@ -9,8 +9,6 @@ import java.util.List;
 @Repository
 public interface OperationTimeLineRepository extends MongoRepository<OperationTimeLine, String> {
 
-    List<OperationTimeLine> findByWalletAccountId(String idWalletAccount);
-
     List<OperationTimeLine> findByUserId(String idUser, Pageable paging);
 
     List<OperationTimeLine> findByUserIdAndWalletAccountId(String idUser, String idWalletAccount, Pageable paging);

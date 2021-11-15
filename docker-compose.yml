@@ -7,7 +7,7 @@ services:
       - "27017:27017"
     networks:
       - digital-wallet-network
-    command: ["--bind_ip", "0.0.0.0"]
+    command: [ "--bind_ip", "0.0.0.0" ]
   rabbitmq:
     image: rabbitmq:3-management
     container_name: 'rabbitmq'
