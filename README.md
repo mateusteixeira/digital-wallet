@@ -11,22 +11,22 @@ Projeto criado como parte de desafio técnico.
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
 - [Começando](#começando)
     - [Pré-requisitos](#Pré-requisitos)
-    - [Preparando o ambiente](#Preparando o ambiente para utilização da aplicação)
-    - [Inicialização da aplicação](#Inicialização da aplicação)
-- [Utilizando a aplicação](#Utilizando a aplicação)
+    - [Preparando o ambiente](#Preparando-o-ambiente-para-utilização-da-aplicação)
+    - [Inicialização da aplicação](#Inicialização-da-aplicação)
+- [Utilizando a aplicação](#Utilizando-a-aplicação)
 - [Funcionalidades](#funcionalidades)
-- [Desenho da arquitetura](#Desenho da Arquitetura)
-- [Desenvolvimento e testes](#Desenvolvimento e testes)
-    - [Camada API](#Desenvolvimento da camada API)
-    - [Camada Serviço](#Desenvolvimento da camada de Serviço)
-    - [Camada de Repositórios](#Desenvolvimento da camada de Repositórios)
-    - [Padrões Utilizados](#Padrões utilizados)
+- [Desenho da arquitetura](#Desenho-da-Arquitetura)
+- [Desenvolvimento e testes](#Desenvolvimento-e-testes)
+    - [Camada API](#Desenvolvimento-da-camada-API)
+    - [Camada Serviço](#Desenvolvimento-da-camada-de-Serviço)
+    - [Camada de Repositórios](#Desenvolvimento-da-camada-de-Repositórios)
+    - [Padrões Utilizados](#Padrões-utilizados)
     - [Testes](#Testes)
 - [Autor](#autor)
 
 ---
 
-## Tecnologias Utilizadas
+## Tecnologias-Utilizadas
 
 - **Java**: [11.0.12](https://www.oracle.com/java/technologies/downloads/#java11)
 - **Apache Maven**: [3.6.3](https://maven.apache.org/)
@@ -68,7 +68,7 @@ seguintes ferramentas:
 
 ---
 
-### Preparando o ambiente para utilização da aplicação
+### Preparando-o-ambiente-para-utilização-da-aplicação
 
 Para realizar a compilação e empacotamento do projeto é necessário, obrigatóriamente, ter o maven e o Java na instalados
 na máquina.
@@ -83,7 +83,7 @@ Para a utilização da aplicação é necessário, obrigatóriamente, o docker/d
 
 ---
 
-### Inicialização da aplicação
+### Inicialização-da-aplicação
 
 Na parta raiz do projeto é necessário executar a compilação e empacotamento, que pode ser feito atráves do comando:
 
@@ -112,7 +112,7 @@ No arquivo docker-compose.yml, encontra-se a definição das imagens que serão 
 construído e inicializados. Neste caso, as configurações são da aplicação em si, além da imagem do RabbitMQ, do MongoDB
 e toda a configuração de porta de comunicação entre os containers e também fora do container.
 
-## Utilizando a aplicação
+## Utilizando-a-aplicação
 
 Após inicializar os containers a aplicação ficará disponível na porta 8888 do localhost e deverá ser usada a collection
 do Postman [disponível aqui](https://www.getpostman.com/collections/61d9b9ca235620d75e17)
@@ -134,15 +134,15 @@ containers os dados serão perdidos
 
 ---
 
-## Desenho da Arquitetura
+## Desenho-da-Arquitetura
 
 A arquitetura pensada para aplicação é uma arquitetura simples, em que é exposta uma API para um cliente, podendo ser
 mobile ou web, e esse possa consumir dos serviços disponíveis. Pode ser vista na imagem a seguir:
 ![](DWallet.jpeg)
 
-## Desenvolvimento e testes
+## Desenvolvimento-e-testes
 
-### Desenvolvimento da camada API
+### Desenvolvimento-da-camada-API
 
 A camada API, também conhecida como Controller, é onde estão expostos os serviços da aplicação. Ela comunica-se
 diretamente com a camada de serviço e não tem qualquer acesso ao modelo, ou base de dados, da aplicação. É composta por
@@ -150,7 +150,7 @@ classes com a nomenclatura:
 
 - **API**: User**API**
 
-### Desenvolvimento da camada de Serviço
+### Desenvolvimento-da-camada-de-Serviço
 
 A camada de serviços é a camada responsável por receber as requisições que passam pela camada de API e aplicar a regra
 de negócio necessário daquele contexto. Nesta camada há a comunicação com a camada de Respositório e utilização das
@@ -167,14 +167,14 @@ API, e utilização de classes validadoras de regras de negócio.
 
 É na camada de Serviço também que é feita a utilização de mensageria, nesta aplicação o RabbitMQ.
 
-### Desenvolvimento da camada de Repositórios
+### Desenvolvimento-da-camada-de-Repositórios
 
 A camada de repositórios é responsável única e exclusivamente pela persistência e recuperação dos dados no banco de
 dados, através dos modelos. É composta por classes com a nomenclatura:
 
 -**Repository**: User**Repository**
 
-### Padrões utilizados
+### Padrões-utilizados
 
 Além do MVC, divisão da aplicação por camadas, foram utilizados outros padrões de projetos para melhor codificar a
 aplicação, são eles:
