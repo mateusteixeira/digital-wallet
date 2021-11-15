@@ -1,7 +1,5 @@
 package br.com.dwallet.api;
 
-import br.com.dwallet.model.UserRepository;
-import br.com.dwallet.model.WalletAccountRepository;
 import br.com.dwallet.model.dto.LifeTimeDTO;
 import br.com.dwallet.model.dto.OperationErrorDTO;
 import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
@@ -9,20 +7,17 @@ import br.com.dwallet.service.LifeTimeService;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
@@ -47,7 +42,7 @@ class LifeTimeAPIIntegrationTest {
         when(lifeTimeService.getLifeTime(ID_USER, Pageable.unpaged())).thenReturn(lifeTimeDTO);
 
         mockMvc.perform(get("/{idUser}/operation/lifetime", ID_USER)
-                .header("Content-Type", MediaType.APPLICATION_JSON))
+                        .header("Content-Type", MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         verify(lifeTimeService).getLifeTime(any(), any());
