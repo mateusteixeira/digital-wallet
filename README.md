@@ -38,7 +38,6 @@ Projeto criado como parte de desafio técnico.
 - **JUnit**: [5.7.2](https://junit.org/junit5/)
 - **ArchUnit**: [0.14.1](https://www.archunit.org/)
 - **Mockito**: [3.9.0](https://site.mockito.org/)
-- **Jib**: [2.0.0](https://github.com/GoogleContainerTools/jib)
 - **Spring-Boot**: [2.5.6](https://spring.io/projects/spring-boot)
     * [Lombok](https://projectlombok.org/)
     * [Test](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html)
