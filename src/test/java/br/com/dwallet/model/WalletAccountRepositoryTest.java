@@ -1,5 +1,6 @@
 package br.com.dwallet.model;
 
+import br.com.dwallet.model.repository.WalletAccountRepository;
 import com.mongodb.client.MongoClients;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodStarter;

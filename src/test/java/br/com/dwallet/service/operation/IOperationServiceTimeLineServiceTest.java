@@ -1,8 +1,8 @@
 package br.com.dwallet.service.operation;
 
 import br.com.dwallet.model.OperationTimeLine;
-import br.com.dwallet.model.OperationTimeLineRepository;
 import br.com.dwallet.model.WalletAccount;
+import br.com.dwallet.model.repository.OperationTimeLineRepository;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class OperationTimeLineServiceTest {
+class IOperationServiceTimeLineServiceTest {
 
     private static final String ID_USER = "a1de";
     private static final String ID_WALLET_ACCOUNT = "a21de";

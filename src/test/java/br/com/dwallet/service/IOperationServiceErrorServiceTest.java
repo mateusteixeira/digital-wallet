@@ -1,7 +1,7 @@
 package br.com.dwallet.service;
 
 import br.com.dwallet.model.OperationError;
-import br.com.dwallet.model.OperationErrorRepository;
+import br.com.dwallet.model.repository.OperationErrorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class OperationErrorServiceTest {
+class IOperationServiceErrorServiceTest {
 
     @Mock
     private OperationErrorRepository operationErrorRepository;

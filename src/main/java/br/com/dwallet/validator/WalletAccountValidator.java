@@ -2,7 +2,7 @@ package br.com.dwallet.validator;
 
 import br.com.dwallet.exception.WalletAccountAlreadyExistsException;
 import br.com.dwallet.model.WalletAccount;
-import br.com.dwallet.model.WalletAccountRepository;
+import br.com.dwallet.model.repository.WalletAccountRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;

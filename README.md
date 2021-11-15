@@ -21,6 +21,7 @@ Projeto criado como parte de desafio técnico.
     - [Camada Serviço](#Desenvolvimento-da-camada-de-Serviço)
     - [Camada de Repositórios](#Desenvolvimento-da-camada-de-Repositórios)
     - [Padrões Utilizados](#Padrões-utilizados)
+    - [Tratativas de erros](#Tratativas-de-erros)
     - [Testes](#Testes)
 - [Autor](#autor)
 
@@ -35,7 +36,7 @@ Projeto criado como parte de desafio técnico.
 - **Docker**: [20.10.18](https://www.docker.com/)
 - **Docker Compose**: [1.29.2](https://docs.docker.com/compose/)
 - **JUnit**: [5.7.2](https://junit.org/junit5/)
-- **ArchUnit**: [0.13.1](https://www.archunit.org/)
+- **ArchUnit**: [0.14.1](https://www.archunit.org/)
 - **Mockito**: [3.9.0](https://site.mockito.org/)
 - **Jib**: [2.0.0](https://github.com/GoogleContainerTools/jib)
 - **Spring-Boot**: [2.5.6](https://spring.io/projects/spring-boot)
@@ -185,13 +186,19 @@ aplicação, são eles:
 
 Além disto, foram seguidos boas práticas de programação e aplicação de SOLID.
 
+### Tratativas-de-erros
+
+Foram criadas exceções customizadas para algumas regras de negócio da aplicação, estas estão contidas no package '
+br/com/dwallet/exception'. Também foi criado um interceptador de exceções para que haja o retorno correto para a API na
+classe br/com/dwallet/exception/DWalletExceptionHandler.java.
+
 ### Testes
 
 O desenvolvimento da aplicação foi feito com testes unitários por camadas, utilizando-se Mockito para fazer o mock dos
 serviços utilizados dentro de um serviço.
 
 Também foi utilizado o MongoDB em memória para possibilitar o teste de integração da camada de repositório e utilizado o
-WebMvnTest.
+WebMvnTest para a camada de API. Também possui um teste simples com o ArchUnit.
 
 ## Autor
 

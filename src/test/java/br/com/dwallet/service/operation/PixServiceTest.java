@@ -1,7 +1,7 @@
 package br.com.dwallet.service.operation;
 
-import br.com.dwallet.model.OperationErrorRepository;
 import br.com.dwallet.model.WalletAccount;
+import br.com.dwallet.model.repository.OperationErrorRepository;
 import br.com.dwallet.queues.messages.AsyncOperationMessage;
 import br.com.dwallet.service.WalletAccountService;
 import br.com.dwallet.validator.operation.PixValidator;

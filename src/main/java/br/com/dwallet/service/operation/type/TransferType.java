@@ -1,4 +1,4 @@
-package br.com.dwallet.service.operation;
+package br.com.dwallet.service.operation.type;
 
 import java.util.Arrays;
 import java.util.Optional;

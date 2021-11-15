@@ -4,6 +4,7 @@ import br.com.dwallet.exception.WrongTransferTypeException;
 import br.com.dwallet.model.dto.TransferDTO;
 import br.com.dwallet.queues.messages.AsyncOperationMessage;
 import br.com.dwallet.queues.senders.OperationQueueSender;
+import br.com.dwallet.service.operation.type.TransferType;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

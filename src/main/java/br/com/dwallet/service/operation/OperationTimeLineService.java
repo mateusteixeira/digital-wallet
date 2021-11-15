@@ -1,8 +1,8 @@
 package br.com.dwallet.service.operation;
 
 import br.com.dwallet.model.OperationTimeLine;
-import br.com.dwallet.model.OperationTimeLineRepository;
 import br.com.dwallet.model.WalletAccount;
+import br.com.dwallet.model.repository.OperationTimeLineRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

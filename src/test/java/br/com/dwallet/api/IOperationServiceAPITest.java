@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-class OperationAPITest {
+class IOperationServiceAPITest {
 
     private static final String ID_USER = "q1w2e3r4";
     private static final String ID_WALLET_ACCOUNT = "AqSwDe";

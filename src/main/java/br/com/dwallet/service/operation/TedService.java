@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TedService extends AbstractOperationService implements Operation {
+public class TedService extends AbstractOperationService implements IOperationService {
 
     public void doProcess(AsyncOperationMessage asyncOperationMessage) {
         super.doOperation(asyncOperationMessage);

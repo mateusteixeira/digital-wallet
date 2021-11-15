@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-class OperationErrorDTOTest {
+class IOperationServiceErrorDTOTest {
 
     private static final String PATH_TO_FILE = "/operationError.json";
     private static final String ACCOUNT_NAME = "conta1";
@@ -18,7 +18,7 @@ class OperationErrorDTOTest {
 
     @Test
     public void should_read_from_json_and_assert_values() throws IOException {
-        OperationErrorDTO operationErrorDTO = DTOTestHelper.getJsonFromFile(PATH_TO_FILE, OperationErrorDTO.class, OperationErrorDTOTest.class);
+        OperationErrorDTO operationErrorDTO = DTOTestHelper.getJsonFromFile(PATH_TO_FILE, OperationErrorDTO.class, IOperationServiceErrorDTOTest.class);
         assertNotNull(operationErrorDTO);
         assertEquals(ACCOUNT_NAME, operationErrorDTO.getAccountName());
         assertEquals(ERROR, operationErrorDTO.getError());

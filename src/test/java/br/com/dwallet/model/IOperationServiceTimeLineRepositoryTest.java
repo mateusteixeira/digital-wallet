@@ -1,5 +1,7 @@
 package br.com.dwallet.model;
 
+import br.com.dwallet.model.repository.OperationTimeLineRepository;
+import br.com.dwallet.model.repository.WalletAccountRepository;
 import com.mongodb.client.MongoClients;
 import de.flapdoodle.embed.mongo.MongodExecutable;
 import de.flapdoodle.embed.mongo.MongodStarter;
@@ -27,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {UserRepository.class, OperationTimeLineRepository.class, WalletAccountRepository.class})
-public class OperationTimeLineRepositoryTest {
+public class IOperationServiceTimeLineRepositoryTest {
 
     private static final String CONNECTION_STRING = "mongodb://%s:%d";
 

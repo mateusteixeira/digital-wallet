@@ -1,7 +1,7 @@
 package br.com.dwallet.service;
 
 import br.com.dwallet.model.OperationError;
-import br.com.dwallet.model.OperationErrorRepository;
+import br.com.dwallet.model.repository.OperationErrorRepository;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 

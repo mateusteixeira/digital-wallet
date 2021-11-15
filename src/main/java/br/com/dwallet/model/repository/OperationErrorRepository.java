@@ -1,5 +1,6 @@
-package br.com.dwallet.model;
+package br.com.dwallet.model.repository;
 
+import br.com.dwallet.model.OperationError;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
