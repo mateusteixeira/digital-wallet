@@ -1,12 +1,10 @@
 package br.com.dwallet.service;
 
 import br.com.dwallet.model.OperationTimeLine;
-import br.com.dwallet.model.dto.LifeTimeDTO;
-import br.com.dwallet.model.dto.OperationLifeTimeDTO;
-import br.com.dwallet.model.dto.WalletAccountDTO;
-import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
+import br.com.dwallet.model.dto.*;
 import br.com.dwallet.service.operation.OperationTimeLineService;
 import br.com.dwallet.translator.LifeTimeTranslator;
+import br.com.dwallet.translator.OperationErrorTranslator;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +18,17 @@ public class LifeTimeService {
 
     private final WalletAccountService walletAccountService;
 
+    private final OperationErrorService operationErrorService;
+
+    private final OperationErrorTranslator operationErrorTranslator;
+
     private final OperationTimeLineService operationTimeLineService;
 
-    public LifeTimeService(LifeTimeTranslator lifeTimeTranslator, WalletAccountService walletAccountService, OperationTimeLineService operationTimeLineService) {
+    public LifeTimeService(LifeTimeTranslator lifeTimeTranslator, WalletAccountService walletAccountService, OperationErrorService operationErrorService, OperationErrorTranslator operationErrorTranslator, OperationTimeLineService operationTimeLineService) {
         this.lifeTimeTranslator = lifeTimeTranslator;
         this.walletAccountService = walletAccountService;
+        this.operationErrorService = operationErrorService;
+        this.operationErrorTranslator = operationErrorTranslator;
         this.operationTimeLineService = operationTimeLineService;
     }
 
@@ -56,5 +60,13 @@ public class LifeTimeService {
                 .operationLifeTimeDTOS(operationLifeTimeDTOS)
                 .build();
 
+    }
+
+    public List<OperationErrorDTO> getErrorsByUser(String idUser, Pageable paging) {
+        return operationErrorService.getOperationErrorsByUser(idUser, paging).stream().map(operationError -> {
+            String idWalletAccount = operationError.getIdWalletAccount();
+            WalletAccountDTO walletAccountById = walletAccountService.getWalletAccountById(idWalletAccount);
+            return operationErrorTranslator.toDTO(operationError, walletAccountById.getAccountName());
+        }).collect(Collectors.toList());
     }
 }

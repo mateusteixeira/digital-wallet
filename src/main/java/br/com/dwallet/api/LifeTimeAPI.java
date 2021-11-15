@@ -1,6 +1,7 @@
 package br.com.dwallet.api;
 
 import br.com.dwallet.model.dto.LifeTimeDTO;
+import br.com.dwallet.model.dto.OperationErrorDTO;
 import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
 import br.com.dwallet.service.LifeTimeService;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/{idUser}/operation/")
@@ -29,6 +32,11 @@ public class LifeTimeAPI {
     public ResponseEntity<WalletAccountLifeTimeDTO> getWalletAccountLifeTime(@PathVariable(name = "idUser") String idUser,
                                                                              @PathVariable(name = "idWalletAccount") String idWalletAccount, Pageable pageable) {
         return ResponseEntity.ok().body(lifeTimeService.getWalletAccountLifeTime(idUser, idWalletAccount, pageable));
+    }
+
+    @GetMapping("/errors")
+    public ResponseEntity<List<OperationErrorDTO>> getOperationErrors(@PathVariable(name = "idUser") String idUser, Pageable pageable) {
+        return ResponseEntity.ok(lifeTimeService.getErrorsByUser(idUser, pageable));
     }
 
 }

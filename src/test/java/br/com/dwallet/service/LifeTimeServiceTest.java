@@ -1,12 +1,11 @@
 package br.com.dwallet.service;
 
+import br.com.dwallet.model.OperationError;
 import br.com.dwallet.model.OperationTimeLine;
-import br.com.dwallet.model.dto.LifeTimeDTO;
-import br.com.dwallet.model.dto.OperationLifeTimeDTO;
-import br.com.dwallet.model.dto.WalletAccountDTO;
-import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
+import br.com.dwallet.model.dto.*;
 import br.com.dwallet.service.operation.OperationTimeLineService;
 import br.com.dwallet.translator.LifeTimeTranslator;
+import br.com.dwallet.translator.OperationErrorTranslator;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +30,12 @@ class LifeTimeServiceTest {
 
     @Mock
     private WalletAccountService walletAccountService;
+
+    @Mock
+    private OperationErrorService operationErrorService;
+
+    @Mock
+    private OperationErrorTranslator operationErrorTranslator;
 
     @Mock
     private OperationTimeLineService operationTimeLineService;
@@ -113,6 +118,40 @@ class LifeTimeServiceTest {
 
         verify(operationTimeLineService).getByIdUserAndIdWalletAccount(ID_USER, ID_WALLET_ACCOUNT, Pageable.unpaged());
         verify(lifeTimeTranslator, never()).toOperationLifeTimeDTOWithOutAccountName(any());
+    }
+
+    @Test
+    public void should_get_errors_for_id() {
+        OperationError operationError = OperationError.builder().idWalletAccount(ID_WALLET_ACCOUNT).build();
+        when(operationErrorService.getOperationErrorsByUser(ID_USER, Pageable.unpaged())).thenReturn(Lists.newArrayList(operationError));
+        WalletAccountDTO walletAccount = WalletAccountDTO.builder().accountName("conta1").build();
+        when(walletAccountService.getWalletAccountById(ID_WALLET_ACCOUNT)).thenReturn(walletAccount);
+        OperationErrorDTO operationErrorDTO = OperationErrorDTO.builder().build();
+        when(operationErrorTranslator.toDTO(operationError, "conta1")).thenReturn(operationErrorDTO);
+
+        List<OperationErrorDTO> errorsByUser = lifeTimeService.getErrorsByUser(ID_USER, Pageable.unpaged());
+        assertNotNull(errorsByUser);
+        assertEquals(1, errorsByUser.size());
+        assertEquals(operationErrorDTO, errorsByUser.get(0));
+
+        verify(operationErrorService).getOperationErrorsByUser(ID_USER, Pageable.unpaged());
+        verify(walletAccountService).getWalletAccountById(ID_WALLET_ACCOUNT);
+        verify(operationErrorTranslator).toDTO(operationError, "conta1");
+
+    }
+
+    @Test
+    public void should_not_get_errors_for_id_user() {
+        when(operationErrorService.getOperationErrorsByUser(ID_USER, Pageable.unpaged())).thenReturn(Lists.newArrayList());
+
+        List<OperationErrorDTO> errorsByUser = lifeTimeService.getErrorsByUser(ID_USER, Pageable.unpaged());
+        assertNotNull(errorsByUser);
+        assertEquals(0, errorsByUser.size());
+
+        verify(operationErrorService).getOperationErrorsByUser(ID_USER, Pageable.unpaged());
+        verify(walletAccountService, never()).getWalletAccountById(any());
+        verify(operationErrorTranslator, never()).toDTO(any(), any());
+
     }
 
 }

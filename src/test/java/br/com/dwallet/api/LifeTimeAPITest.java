@@ -1,8 +1,10 @@
 package br.com.dwallet.api;
 
 import br.com.dwallet.model.dto.LifeTimeDTO;
+import br.com.dwallet.model.dto.OperationErrorDTO;
 import br.com.dwallet.model.dto.WalletAccountLifeTimeDTO;
 import br.com.dwallet.service.LifeTimeService;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -11,6 +13,9 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
@@ -52,6 +57,19 @@ class LifeTimeAPITest {
         WalletAccountLifeTimeDTO walletAccountLifeTimeDTO = walletAccountLifeTimeDTOResponseEntity.getBody();
         assertNotNull(walletAccountLifeTimeDTO);
         verify(lifeTimeService).getWalletAccountLifeTime(eq(ID_USER), eq(ID_WALLET_ACCOUNT), any(PageRequest.class));
+    }
+
+    @Test
+    public void should_get_life_time_error_for_id_user() {
+        PageRequest pageRequest = PageRequest.of(0, 3);
+        when(lifeTimeService.getErrorsByUser(ID_USER, pageRequest)).thenReturn(Lists.newArrayList(OperationErrorDTO.builder().build()));
+
+        ResponseEntity<List<OperationErrorDTO>> operationErrorsDTOResponseEntity = lifeTimeAPI.getOperationErrors(ID_USER, pageRequest);
+        assertNotNull(operationErrorsDTOResponseEntity.getBody());
+        assertEquals(1, operationErrorsDTOResponseEntity.getBody().size());
+        OperationErrorDTO operationErrorDTO = operationErrorsDTOResponseEntity.getBody().get(0);
+        assertNotNull(operationErrorDTO);
+        verify(lifeTimeService).getErrorsByUser(eq(ID_USER), any(PageRequest.class));
     }
 
 }
