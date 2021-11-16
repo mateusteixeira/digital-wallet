@@ -1,6 +1,7 @@
 package br.com.dwallet.service.operation;
 
 import br.com.dwallet.model.OperationTimeLine;
+import br.com.dwallet.model.User;
 import br.com.dwallet.model.WalletAccount;
 import br.com.dwallet.model.repository.OperationTimeLineRepository;
 import org.assertj.core.util.Lists;
@@ -59,7 +60,7 @@ class IOperationServiceTimeLineServiceTest {
 
     @Test
     public void should_create_operation_time_for_incoming() {
-        WalletAccount walletAccount = WalletAccount.builder().build();
+        WalletAccount walletAccount = WalletAccount.builder().user(User.builder().build()).build();
 
         operationTimeLineService.createOperationTimeLineForIncoming(walletAccount, BigDecimal.ZERO, "TED");
 
@@ -74,7 +75,7 @@ class IOperationServiceTimeLineServiceTest {
 
     @Test
     public void should_create_operation_time_for_out_coming() {
-        WalletAccount walletAccount = WalletAccount.builder().build();
+        WalletAccount walletAccount = WalletAccount.builder().user(User.builder().build()).build();
 
         operationTimeLineService.createOperationTimeLineForOutComing(walletAccount, BigDecimal.ZERO, "TED");
 
