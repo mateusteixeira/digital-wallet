@@ -55,28 +55,28 @@ Projeto criado como parte de desafio técnico.
 
 ### Pré-requisitos
 
-Para que seja possível um correto desenvolvimento do projeto, é necessário que estejam instalados e funcionais as
+Para que seja possível uma correta inicialização do projeto, é necessário que estejam instalados e funcionais as
 seguintes ferramentas:
 
 - **Java SE**: O uso da linguagem Java na versão 11.
 - **Maven**: Para compilação e empacotamento do projeto como um .jar.
-- **Docker**: Para que seja possível a criação da imagem da aplicação, assim diminuindo as ferramentas e o tempo
+- **Docker**: Para ser possível a criação da imagem da aplicação, assim diminuindo as ferramentas e o tempo
   necessário para o processo.
-- **Docker Compose**: Para que seja possível criar a imagem de todos os serviços da aplicação e para que possa ser
+- **Docker Compose**: Para ser possível criar a imagem de todos os serviços da aplicação e para que possam ser
   iniciados estes serviços.
-- **Postman**: Para que seja possível realizar as requisições na aplicação.
+- **Postman**: Para ser possível realizar as requisições na aplicação.
 
 ---
 
 ### Preparando-o-ambiente-para-utilização-da-aplicação
 
-Para realizar a compilação e empacotamento do projeto é necessário, obrigatóriamente, ter o maven e o Java na instalados
+Para realizar a compilação e empacotamento do projeto é necessário, obrigatoriamente, ter o maven e o Java já instalados
 na máquina.
 
 - [Como instalar o Java](https://www.java.com/en/download/help/index_installing.html)
 - [Como instalar o Maven](https://maven.apache.org/install.html#)
 
-Para a utilização da aplicação é necessário, obrigatóriamente, o docker/docker-compose instalado na máquina.
+Para a utilização da aplicação é necessário, obrigatoriamente, o docker/docker-compose instalado na máquina.
 
 - [Como instalar o docker](https://docs.docker.com/install/)
 - [Como instalar o docker-compose](https://docs.docker.com/compose/install/)
@@ -85,7 +85,7 @@ Para a utilização da aplicação é necessário, obrigatóriamente, o docker/d
 
 ### Inicialização-da-aplicação
 
-Na parta raiz do projeto é necessário executar a compilação e empacotamento, que pode ser feito atráves do comando:
+Na parta raiz do projeto é necessário executar a compilação e empacotamento, que pode ser feito através do comando:
 
 ```
 mvn clean install
@@ -116,10 +116,10 @@ e toda a configuração de porta de comunicação entre os containers e também 
 
 Após inicializar os containers a aplicação ficará disponível na porta 8888 do localhost e deverá ser usada a collection
 do Postman [disponível aqui](https://www.getpostman.com/collections/61d9b9ca235620d75e17)
-para fazer as requisiçõs. Na collection já esta disponível os arquivos .json necessários para as requisições, a única
+para fazer as requisições. Na collection já esta disponível os arquivos .json necessários para as requisições, a única
 alteração necessária são as atualizações dos identificadores nas requisições.
 
-**Importante:** A aplicação, e o container do MongoDB, não tem volume persistido, portanto ao reinicializar os
+**Importante:** A aplicação, e o container do MongoDB, não tem volume persistido, portanto, ao reinicializar os
 containers os dados serão perdidos
 
 ## Funcionalidades
@@ -145,7 +145,7 @@ mobile ou web, e esse possa consumir dos serviços disponíveis. Pode ser vista 
 ### Desenvolvimento-da-camada-API
 
 A camada API, também conhecida como Controller, é onde estão expostos os serviços da aplicação. Ela comunica-se
-diretamente com a camada de serviço e não tem qualquer acesso ao modelo, ou base de dados, da aplicação. É composta por
+diretamente com a camada de serviço e não tem nenhum acesso ao modelo, ou base de dados, da aplicação. É composta por
 classes com a nomenclatura:
 
 - **API**: User**API**
@@ -153,7 +153,7 @@ classes com a nomenclatura:
 ### Desenvolvimento-da-camada-de-Serviço
 
 A camada de serviços é a camada responsável por receber as requisições que passam pela camada de API e aplicar a regra
-de negócio necessário daquele contexto. Nesta camada há a comunicação com a camada de Respositório e utilização das
+de negócio necessário daquele contexto. Nesta camada há a comunicação com a camada de Repositório e utilização das
 classes de modelos, porém somente para uso, não podendo criar, modificar ou excluir diretamente um dado daquele modelo.
 
 Também há a utilização de classes que fazem o papel de tradutores, entre modelo e objeto que transita para camada de
@@ -165,7 +165,7 @@ API, e utilização de classes validadoras de regras de negócio.
 - **Translator**: User**Translator**
 - **Validator**: User**Validator**
 
-É na camada de Serviço também que é feita a utilização de mensageria, nesta aplicação o RabbitMQ.
+É na camada de Serviço também que é feita a utilização de mensageiria, nesta aplicação o RabbitMQ.
 
 ### Desenvolvimento-da-camada-de-Repositórios
 
