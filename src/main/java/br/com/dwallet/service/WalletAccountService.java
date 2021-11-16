@@ -7,6 +7,7 @@ import br.com.dwallet.model.dto.WalletAccountDTO;
 import br.com.dwallet.model.repository.WalletAccountRepository;
 import br.com.dwallet.translator.WalletAccountTranslator;
 import br.com.dwallet.validator.WalletAccountValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class WalletAccountService {
 
@@ -35,6 +37,7 @@ public class WalletAccountService {
     }
 
     public WalletAccountDTO createWalletAccount(WalletAccountDTO walletAccountDTO) {
+        log.info("Creating wallet Acoount {}-{} for user: {}", walletAccountDTO.getAccountName(), walletAccountDTO.getAccountNumber(), walletAccountDTO.getIdUser());
         User user = userService.getUserOrThrowNotFoundException(walletAccountDTO.getIdUser());
         WalletAccount walletAccount = walletAccountTranslator.fromDTO(walletAccountDTO);
         walletAccountValidator.validateWalletAccountExists(walletAccount);
@@ -58,6 +61,7 @@ public class WalletAccountService {
     }
 
     public void updateWalletAccount(WalletAccountDTO walletAccountDTO, String idWalletAccount) {
+        log.info("Updating wallet Acoount {}-{} for user: {}", walletAccountDTO.getAccountName(), walletAccountDTO.getAccountNumber(), walletAccountDTO.getIdUser());
         WalletAccount walletAccount = getWalletAccountOrThrowNotFoundException(idWalletAccount);
         walletAccount.setAccountName(walletAccountDTO.getAccountName());
         walletAccountRepository.save(walletAccount);
@@ -91,7 +95,4 @@ public class WalletAccountService {
         return walletAccount;
     }
 
-    public List<WalletAccount> getWalletAccountByIdUser(String idUser) {
-        return walletAccountRepository.findByUserId(idUser);
-    }
 }

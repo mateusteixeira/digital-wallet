@@ -3,6 +3,7 @@ package br.com.dwallet.service.operation;
 import br.com.dwallet.model.OperationTimeLine;
 import br.com.dwallet.model.WalletAccount;
 import br.com.dwallet.model.repository.OperationTimeLineRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class OperationTimeLineService {
 
@@ -28,6 +30,7 @@ public class OperationTimeLineService {
     }
 
     private void createOperationTimeLine(WalletAccount walletAccount, BigDecimal value, String type, boolean incoming) {
+        log.info("Creating Operation Time line for user {} wallet {} with type {} for incoming {}", walletAccount.getUser().getId(), walletAccount.getAccountNumber(), type, incoming);
         OperationTimeLine operationTimeLine = OperationTimeLine.builder()
                 .user(walletAccount.getUser())
                 .walletAccount(walletAccount)
@@ -38,6 +41,7 @@ public class OperationTimeLineService {
                 .build();
 
         operationTimeLineRepository.save(operationTimeLine);
+        log.info("Created Operation Time line for user {} wallet {} with type {} for incoming {}", walletAccount.getUser().getId(), walletAccount.getAccountNumber(), type, incoming);
     }
 
     public List<OperationTimeLine> getByIdUser(String idUser, Pageable paging) {

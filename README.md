@@ -60,10 +60,10 @@ seguintes ferramentas:
 
 - **Java SE**: O uso da linguagem Java na versão 11.
 - **Maven**: Para compilação e empacotamento do projeto como um .jar.
-- **Docker**: Para ser possível a criação da imagem da aplicação, assim diminuindo as ferramentas e o tempo
-  necessário para o processo.
-- **Docker Compose**: Para ser possível criar a imagem de todos os serviços da aplicação e para que possam ser
-  iniciados estes serviços.
+- **Docker**: Para ser possível a criação da imagem da aplicação, assim diminuindo as ferramentas e o tempo necessário
+  para o processo.
+- **Docker Compose**: Para ser possível criar a imagem de todos os serviços da aplicação e para que possam ser iniciados
+  estes serviços.
 - **Postman**: Para ser possível realizar as requisições na aplicação.
 
 ---

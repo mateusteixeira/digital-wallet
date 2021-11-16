@@ -6,6 +6,7 @@ import br.com.dwallet.model.UserRepository;
 import br.com.dwallet.model.dto.UserDTO;
 import br.com.dwallet.translator.UserTranslator;
 import br.com.dwallet.validator.UserValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class UserService {
 
@@ -30,6 +32,7 @@ public class UserService {
     }
 
     public UserDTO createUser(UserDTO userDTO) {
+        log.info("Creating user: {} with document {}", userDTO.getName(), userDTO.getDocument());
         User user = userTranslator.fromDTO(userDTO);
         user.setCreatedAt(LocalDateTime.now());
         userValidator.validateUserExists(user);
@@ -51,6 +54,7 @@ public class UserService {
     }
 
     public void updateUser(UserDTO userDTO, String idUser) {
+        log.info("Updating user: {}", userDTO.getName());
         User user = getUserOrThrowNotFoundException(idUser);
         user.setDocument(userDTO.getDocument());
         user.setEmail(userDTO.getEmail());

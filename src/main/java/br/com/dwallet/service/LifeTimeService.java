@@ -5,12 +5,14 @@ import br.com.dwallet.model.dto.*;
 import br.com.dwallet.service.operation.OperationTimeLineService;
 import br.com.dwallet.translator.LifeTimeTranslator;
 import br.com.dwallet.translator.OperationErrorTranslator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class LifeTimeService {
 
@@ -33,6 +35,7 @@ public class LifeTimeService {
     }
 
     public LifeTimeDTO getLifeTime(String idUser, Pageable paging) {
+        log.info("Getting lifeTime for idUser: {}", idUser);
         List<OperationTimeLine> operationTimeLines = operationTimeLineService.getByIdUser(idUser, paging);
         List<OperationLifeTimeDTO> operationLifeTimeDTOS = operationTimeLines.stream()
                 .map(lifeTimeTranslator::toOperationLifeTimeDTO)
@@ -47,6 +50,7 @@ public class LifeTimeService {
     }
 
     public WalletAccountLifeTimeDTO getWalletAccountLifeTime(String idUser, String idWalletAccount, Pageable paging) {
+        log.info("Getting walletAccountLifeTime for idUser: {} and idWalletAccount: {}", idUser, idWalletAccount);
         List<OperationTimeLine> operationTimeLines = operationTimeLineService.getByIdUserAndIdWalletAccount(idUser, idWalletAccount, paging);
         List<OperationLifeTimeDTO> operationLifeTimeDTOS = operationTimeLines.stream()
                 .map(lifeTimeTranslator::toOperationLifeTimeDTOWithOutAccountName)
@@ -63,6 +67,7 @@ public class LifeTimeService {
     }
 
     public List<OperationErrorDTO> getErrorsByUser(String idUser, Pageable paging) {
+        log.info("Getting errors for idUser: {}", idUser);
         return operationErrorService.getOperationErrorsByUser(idUser, paging).stream().map(operationError -> {
             String idWalletAccount = operationError.getIdWalletAccount();
             WalletAccountDTO walletAccountById = walletAccountService.getWalletAccountById(idWalletAccount);

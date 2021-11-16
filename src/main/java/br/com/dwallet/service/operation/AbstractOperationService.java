@@ -6,10 +6,12 @@ import br.com.dwallet.model.repository.OperationErrorRepository;
 import br.com.dwallet.queues.messages.AsyncOperationMessage;
 import br.com.dwallet.service.WalletAccountService;
 import br.com.dwallet.validator.operation.Validator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 
+@Slf4j
 public abstract class AbstractOperationService {
 
     private WalletAccountService walletAccountService;
@@ -24,6 +26,7 @@ public abstract class AbstractOperationService {
 
     protected void doOperation(AsyncOperationMessage asyncOperationMessage) {
         try {
+            log.info("Doing {}", asyncOperationMessage);
             validateOperation(asyncOperationMessage);
             WalletAccount walletAccountFromUpdated = subtractFromWalletAccount(asyncOperationMessage);
             WalletAccount walletAccountToUpdated = addToWalletAccount(asyncOperationMessage);
@@ -31,6 +34,7 @@ public abstract class AbstractOperationService {
             walletAccountService.saveWalletAccount(walletAccountToUpdated);
             operationTimeLineService.createOperationTimeLineForOutComing(walletAccountFromUpdated, asyncOperationMessage.getAmount(), asyncOperationMessage.getType());
             operationTimeLineService.createOperationTimeLineForIncoming(walletAccountToUpdated, asyncOperationMessage.getAmount(), asyncOperationMessage.getType());
+            log.info("Done {}", asyncOperationMessage);
         } catch (Exception e) {
             OperationError operationError = OperationError.builder()
                     .error(e.getMessage())
@@ -40,6 +44,7 @@ public abstract class AbstractOperationService {
                     .type(asyncOperationMessage.getType())
                     .build();
             operationErrorRepository.save(operationError);
+            log.error("Error on operation {}. Error: {}", asyncOperationMessage, e.getMessage());
         }
     }
 
