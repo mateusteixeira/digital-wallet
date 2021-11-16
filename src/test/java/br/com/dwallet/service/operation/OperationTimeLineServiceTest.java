@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class IOperationServiceTimeLineServiceTest {
+class OperationTimeLineServiceTest {
 
     private static final String ID_USER = "a1de";
     private static final String ID_WALLET_ACCOUNT = "a21de";

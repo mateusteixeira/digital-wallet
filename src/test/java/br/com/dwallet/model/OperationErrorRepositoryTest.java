@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {UserRepository.class, OperationErrorRepository.class})
-class IOperationServiceErrorRepositoryTest {
+class OperationErrorRepositoryTest {
 
     private static final String CONNECTION_STRING = "mongodb://%s:%d";
 

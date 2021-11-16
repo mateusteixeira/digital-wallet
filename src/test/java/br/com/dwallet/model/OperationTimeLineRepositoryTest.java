@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @ExtendWith(SpringExtension.class)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = {UserRepository.class, OperationTimeLineRepository.class, WalletAccountRepository.class})
-public class IOperationServiceTimeLineRepositoryTest {
+public class OperationTimeLineRepositoryTest {
 
     private static final String CONNECTION_STRING = "mongodb://%s:%d";
 

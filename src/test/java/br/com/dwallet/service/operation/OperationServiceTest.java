@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 import static org.mockito.Mockito.verify;
 
-class IOperationServiceServiceTest {
+class OperationServiceTest {
 
     private static final String ID_USER = "A1q1";
     private static final String ID_WALLET_ACCOUNT = "A1q132";
